@@ -1,0 +1,31 @@
+# Evaluation and Comparison of Query Optimization Methods for RAG Systems
+
+This repository contains the code used to run retrieval and evaluation experiments for different query optimization
+methods in a Retrieval-Augmented Generation (RAG) setup.
+
+The project uses two main backends for retrieval:
+
+- A FAISS-based dense vector index (via Haystack’s `FAISSDocumentStore`)
+- An Elasticsearch index for BM25 retrieval (running in Docker)
+
+These backends were hosted locally and not accessible from remote machines.
+
+---
+## FAISS index (`faiss_index/`)
+
+The directory `faiss_index/` contains the persistent FAISS index and its metadata:
+
+- `faiss_docs.db` – SQLite database with document metadata and embeddings
+- `faiss_index` – binary FAISS index
+- `faiss_index.json` – Haystack metadata for the FAISS store
+
+These files are not committed to the repository because of their very large size. Almost 2.5 Million passages
+are saved in them
+---
+
+For BM25 / sparse retrieval,Elasticsearch instance running in a Docker container was used. Because Elasticsearch
+ran in Docker, all indexed data was stored in a local Docker volume on my machine and is therefore only available
+locally and not part of this repository.
+
+---
+the datasets folder with NQ data was also very huge due to its corpus. To get the folder, run upload_nq.py script.
